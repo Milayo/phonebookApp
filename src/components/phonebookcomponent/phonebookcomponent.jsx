@@ -52,6 +52,13 @@ const ContactsComponent = () => {
         height: "35rem",
         width: "70vw",
         margin: "1rem auto",
+        border: "1px solid red",
+        ["@media (max-width: 1000px)"]: {
+          width: "95vw",
+        },
+        ["@media (max-width: 500px)"]: {
+          padding: "2rem",
+        },
       }}
     >
       <Box
@@ -62,6 +69,14 @@ const ContactsComponent = () => {
           padding: "0 4rem",
           alignItems: "center",
           margin: "1.5rem",
+          ["@media (max-width: 1000px)"]: {
+            width: "85vw",
+            padding: "0 2rem",
+          },
+          ["@media (max-width: 500px)"]: {
+            flexDirection: "column",
+            gap: "1rem",
+          },
         }}
       >
         {" "}
