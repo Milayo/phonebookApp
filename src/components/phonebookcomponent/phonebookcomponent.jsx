@@ -4,7 +4,7 @@ import { Box, Typography, Button, Modal, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import SearchInput from "../searchinput/searchinput";
 import ContactTable from "../contacttable/contacttable";
-import { addUser } from "../../redux/contacts/contact-actions";
+import { addContact } from "../../redux/contacts/contact-actions";
 
 const ContactsComponent = () => {
   const [open, setOpen] = useState(false);
@@ -13,6 +13,8 @@ const ContactsComponent = () => {
     lastName: "",
     phoneNumber: "",
   });
+  const [searchInput, setSearchInput] = useState("");
+
   const dispatch = useDispatch();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -26,13 +28,19 @@ const ContactsComponent = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(addUser(input));
+    dispatch(addContact(input));
     setInput({
       firstName: "",
       lastName: "",
       phoneNumber: "",
     });
-  }
+  };
+
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value);
+  };
+  
+
   return (
     <Box
       sx={{
@@ -67,8 +75,8 @@ const ContactsComponent = () => {
           Add Contact
         </Button>
       </Box>
-      <SearchInput />
-      <ContactTable />
+      <SearchInput searchInput={searchInput} handleSearch={handleSearch} />
+      <ContactTable searchInput={searchInput} />
       <Modal
         open={open}
         onClose={handleClose}

@@ -10,9 +10,8 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 
-const ContactTable = () => {
+const ContactTable = ({ searchInput }) => {
   const { contacts } = useSelector((state) => state.contact);
-
   return (
     <TableContainer
       component={Paper}
@@ -53,16 +52,28 @@ const ContactTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {contacts.map((item) => (
-            <TableRow
-              key={item.index}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell align="center">{item.firstName}</TableCell>
-              <TableCell align="center">{item.lastName}</TableCell>
-              <TableCell align="center">{item.phoneNumber}</TableCell>
-            </TableRow>
-          ))}
+          {contacts
+            .filter((item) =>
+              searchInput
+                ? item.firstName
+                    .toLowerCase()
+                    .includes(searchInput.toLowerCase()) ||
+                  item.lastName
+                    .toLowerCase()
+                    .includes(searchInput.toLowerCase()) ||
+                  item.phoneNumber.includes(searchInput.toLowerCase())
+                : item
+            )
+            .map((item) => (
+              <TableRow
+                key={item.index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">{item.firstName}</TableCell>
+                <TableCell align="center">{item.lastName}</TableCell>
+                <TableCell align="center">{item.phoneNumber}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
