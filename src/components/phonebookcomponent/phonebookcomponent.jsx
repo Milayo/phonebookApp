@@ -52,7 +52,6 @@ const ContactsComponent = () => {
         height: "35rem",
         width: "70vw",
         margin: "1rem auto",
-        border: "1px solid red",
         ["@media (max-width: 1000px)"]: {
           width: "95vw",
         },
@@ -101,9 +100,9 @@ const ContactsComponent = () => {
         <Box
           sx={{
             position: "absolute",
-            top: "50%",
+            top: "20%",
             left: "50%",
-            transform: "translate(-50%, -50%)",
+            transform: "translate(-50%, -5%)",
             width: "50%",
             backgroundColor: "#fff",
             border: "2px solid #281E5D",
